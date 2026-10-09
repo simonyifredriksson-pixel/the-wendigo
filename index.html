@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE WENDIGO</title>
+<meta name="description" content="Open-world survival horror on a remote island. Chop, build, explore and survive the nights. Something enormous hunts after dark. 1-4 players.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<!-- stamp:start (written by tools/stamp.mjs - do not edit by hand) -->
+<script type="importmap">{
+ "imports": {
+  "./lib/three.module.js": "./lib/three.module.js?v=a762b858",
+  "./src/art/AnimalArt.js": "./src/art/AnimalArt.js?v=970528d6",
+  "./src/art/ItemArt.js": "./src/art/ItemArt.js?v=d9929e9b",
+  "./src/art/PeopleArt.js": "./src/art/PeopleArt.js?v=8ecf06fd",
+  "./src/art/PropArt.js": "./src/art/PropArt.js?v=e9866804",
+  "./src/art/PropKit.js": "./src/art/PropKit.js?v=f35a57e0",
+  "./src/art/Trees.js": "./src/art/Trees.js?v=a8419d95",
+  "./src/art/WendigoArt.js": "./src/art/WendigoArt.js?v=fa34443b",
+  "./src/core/Audio.js": "./src/core/Audio.js?v=d97f2cc9",
+  "./src/core/Geo.js": "./src/core/Geo.js?v=50f36b80",
+  "./src/core/Input.js": "./src/core/Input.js?v=b529a928",
+  "./src/core/PostFX.js": "./src/core/PostFX.js?v=2f504aa1",
+  "./src/core/Shading.js": "./src/core/Shading.js?v=53c6f4a2",
+  "./src/core/Textures.js": "./src/core/Textures.js?v=48811bcc",
+  "./src/core/Util.js": "./src/core/Util.js?v=2014a9bc",
+  "./src/data/Items.js": "./src/data/Items.js?v=a076fcbe",
+  "./src/debug/Tests.js": "./src/debug/Tests.js?v=6d3ad76e",
+  "./src/game/Build.js": "./src/game/Build.js?v=457dce58",
+  "./src/game/Chop.js": "./src/game/Chop.js?v=bc8194b3",
+  "./src/game/Combat.js": "./src/game/Combat.js?v=6273e6f9",
+  "./src/game/Director.js": "./src/game/Director.js?v=da110dd4",
+  "./src/game/FX.js": "./src/game/FX.js?v=17de49a8",
+  "./src/game/Fire.js": "./src/game/Fire.js?v=372c1bc9",
+  "./src/game/Game.js": "./src/game/Game.js?v=4ccdad42",
+  "./src/game/Interact.js": "./src/game/Interact.js?v=43b32ae6",
+  "./src/game/Inventory.js": "./src/game/Inventory.js?v=efa4f6f8",
+  "./src/game/Items.js": "./src/game/Items.js?v=61719404",
+  "./src/game/NetSync.js": "./src/game/NetSync.js?v=b2909e15",
+  "./src/game/Player.js": "./src/game/Player.js?v=fdefb4e3",
+  "./src/game/Remote.js": "./src/game/Remote.js?v=908610f0",
+  "./src/game/State.js": "./src/game/State.js?v=2072ad03",
+  "./src/game/Story.js": "./src/game/Story.js?v=456f5f50",
+  "./src/game/Viewmodel.js": "./src/game/Viewmodel.js?v=f326dc46",
+  "./src/game/Wendigo.js": "./src/game/Wendigo.js?v=fa31251d",
+  "./src/game/Wildlife.js": "./src/game/Wildlife.js?v=042bbb5f",
+  "./src/main.js": "./src/main.js?v=dc3239aa",
+  "./src/net/Net.js": "./src/net/Net.js?v=21bddd17",
+  "./src/ui/Admin.js": "./src/ui/Admin.js?v=1dee0b9f",
+  "./src/ui/HUD.js": "./src/ui/HUD.js?v=6b8de5d8",
+  "./src/ui/UI.js": "./src/ui/UI.js?v=75c3b6c3",
+  "./src/world/Atmos.js": "./src/world/Atmos.js?v=2b2895b9",
+  "./src/world/Cover.js": "./src/world/Cover.js?v=7d6668a3",
+  "./src/world/Forest.js": "./src/world/Forest.js?v=1c30b4ab",
+  "./src/world/Island.js": "./src/world/Island.js?v=fef32ccd",
+  "./src/world/Physics.js": "./src/world/Physics.js?v=e1c97cb7",
+  "./src/world/Sky.js": "./src/world/Sky.js?v=0dc89a49",
+  "./src/world/Terrain.js": "./src/world/Terrain.js?v=d654a3b7",
+  "./src/world/Water.js": "./src/world/Water.js?v=035c6416",
+  "./src/world/World.js": "./src/world/World.js?v=7f642a04"
+ }
+}</script>
+<!-- stamp:end -->
+<link rel="stylesheet" href="styles/main.css?v=af15d280">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 44V22M24 22l-8-10M24 22l8-10M16 12l-6-6M16 12l-2-9M32 12l6-6M32 12l2-9' stroke='%23d8452a' stroke-width='3.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="hud" class="hidden"></div>
+<div id="subs"></div>
+<div id="panel"></div>
+<input id="chatbox" maxlength="120" placeholder="Say something... (Enter)" style="display:none" autocomplete="off">
+<div id="fade"><div class="ft"></div><div class="fs"></div></div>
+
+<div id="title" class="hidden">
+  <div class="tbox">
+    <div class="logo">THE WENDIGO</div>
+    <div class="tag">We thought surviving the wilderness would be the hard part. Then night came.</div>
+    <label class="tn">Your name <input id="tname" maxlength="16" autocomplete="off"></label>
+    <div class="looks" id="looks"></div>
+    <div class="tbtns">
+      <button id="bcont" class="big">CONTINUE</button>
+      <button id="bnew" class="big">NEW GAME</button>
+      <button id="bhost">HOST CO-OP</button>
+      <div class="join"><input id="tcode" maxlength="5" placeholder="CODE" autocomplete="off"><button id="bjoin">JOIN</button></div>
+      <button id="bset" class="small">SETTINGS</button>
+    </div>
+    <div id="tmsg"></div>
+    <div class="tfoot">1-4 players &middot; headphones strongly recommended &middot; WASD + mouse</div>
+  </div>
+</div>
+<div id="loading"><div class="lt">THE WENDIGO</div><div id="loadtxt">Loading...</div><div class="lbar"><div id="lfill"></div></div></div>
+<pre id="errlog"></pre>
+<noscript><p style="color:#fff;padding:20px">THE WENDIGO needs JavaScript and WebGL 2.</p></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js" async></script>
+<script type="module" src="src/main.js?v=dc3239aa"></script>
+</body>
+</html>
